@@ -1,0 +1,206 @@
+* { margin: 0px;}
+
+ 
+
+html {box-sizing: border-box;}
+
+ 
+
+body {font-family: 'Nunito', sans-serif;
+    ;background-color: rgb(255, 253, 112)}
+
+ 
+
+h1 {text-align: center;
+    text-transform: uppercase;
+    padding: 10px; 
+    color:black;
+    ;border: 1px;
+    background: padding-box;
+     text-align: center;
+     margin-left: 90px;
+     margin-right: 90px;
+     margin-top: 35px;
+     margin-bottom: 35px;
+     /*font-family: 'Permanent Marker', cursive;*/
+     background-color: rgb(99, 252, 229);
+      padding: 1rem;
+      font-size: 2.5rem;
+    box-shadow: inset;
+    border-radius: 25px;}
+
+ 
+
+h5 {text-align: center;
+    font-size: 18px;
+    padding: 30px;}
+
+.completa {text-decoration: line-through;
+    color: rgb(237, 25, 25);}
+
+/* DATOS */
+.datos {
+    background-color: rgb(12, 42, 66);
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    gap: 10px;}
+
+ 
+
+.datos p {background-color: rgb(20, 32, 47);
+    color: aliceblue;
+    padding: 6px 10px;
+    border-radius: 5px;
+}
+
+ 
+
+/* CONTENEDOR */
+
+.contenedor {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 15px;
+}
+
+ 
+
+.contenedor .formulario {
+    height: 30px;
+    width: 500px;
+        border: 1px;
+        text-align:center;
+        margin-left: 100px ;
+        margin-right: 20px ;
+        margin-top: 20px;
+        margin-bottom:20px;
+        /*font-family: 'Permanent Marker', cursive;*/
+        background-color:  rgb(233, 112, 235);
+         padding: 1rem;
+         font-size: 20px;
+         border-radius: 15px;
+
+}
+
+ 
+
+.contenedor .formulario input[type="text"] {
+    border: none;
+    padding: 1rem;
+    height: 19px;
+    width: 499px;
+    background-color:rgb(233, 112, 235);
+}
+
+ 
+
+.contenedor .formulario input[type="text"]:focus {
+    outline: none;
+    background-color:rgb(233, 112, 235);
+}
+
+ 
+
+.contenedor .formulario input[type="submit"] {
+    border: none;
+    padding: 10px;
+    background-color: rgb(9, 34, 69);
+    color: #fff;
+    cursor: pointer;
+    margin-top: 40px;
+}
+
+
+
+
+
+/* TAREAS */
+
+.contenedor .tareas {
+    padding: 60px;
+    margin: 10px;
+    height: 110px;
+    width: 500px;
+        border: 1px;
+        text-align:start;
+        margin-left: 20px ;
+        margin-right: 100px ;
+        margin-top: 20px;
+        margin-bottom:20px;
+        /*font-family: 'Permanent Marker', cursive;*/
+         padding: 1rem;
+         font-size: 20px;
+         
+}
+ 
+.contenedor .item-tarea {   
+    justify-content: space-between;
+    background-color: rgba(251, 187, 203);
+    padding: 1rem;
+     height: 30px;
+    width: 500px;
+        border: 1px;
+        text-align:start;
+        margin-left: 3px ;
+        margin-right: 100px ;
+        margin-top: -16px;
+        margin-bottom:20px;
+         font-size: 20px;
+         border-radius: 15px;
+
+}
+
+.eliminar {
+    border: none;
+    background-color: rgb(163, 22, 33);
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform ease 300ms;
+    
+}
+ 
+.eliminar:hover {
+    transform: scale(1.3);
+}
+
+.completada {
+display: flex;
+    border: none;
+    background-color: rgb(77, 229, 35);
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform ease 300ms;
+}
+.importante {
+    display: flex;
+        border: none;
+        background-color: rgb(219, 34, 42);
+        color: #ffffff;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: transform ease 300ms;
+    }
+.completada:hover {
+    transform: scale(1.3);
+}
+
+.importante:hover{
+    transform: scale(1.3);
+}
+
+@media (max-width: 600px) {
+    .contenedor {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin: 15px;
+    }
+}
+
+div .botones{
+    display: inline-flex;
+    padding-left: 65%;
+}

@@ -1,0 +1,45 @@
+<DOCTYPE html>
+
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>block de notas</title>
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body> 
+        <main>
+        <h1>Block de Notas</h1>
+        </main>
+        <div class="fecha">
+            <div class="fechaRight">
+                <div id="number"></div>
+            </div>
+            <div id="month"></div>
+            <div id="year"></div>
+        </div>
+
+        <div id="text"></div>
+        
+        <div class="contenedor">
+            <form class="formulario" id="formulario">
+                <input type="text" id="tarea" placeholder="Escribe tu tarea.." autocomplete="off">
+
+                <input type="submit" value="Agregar" >
+            </form>
+
+            <div class="tareas" id="tareas">
+                <div class="item-tarea">
+                    <div class="botones">
+                        <button class="eliminar" data-id="${item.id}">Eliminar</button>
+                        <button class="completada" data-id="${item.id}">Hecha</button>
+                        <button class="importante" onclick="">Important</button>       
+                    </div>
+                    </div>
+                <!-- <h5>SIN TAREAS</h5> -->
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+    </html>

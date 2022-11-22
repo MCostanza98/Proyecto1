@@ -1,13 +1,11 @@
 "use strict"
-/* VARIABLES */
-/* VARIABLES PARA LA FECHA */
+
 
 const number = document.getElementById('number');
 const text = document.getElementById('text');
 const month = document.getElementById('month');
 const year = document.getElementById('year');
 const tasksContainer = document.getElementById('tasksContainer');
-//funcion para obetener la fecha actual.
 const setDate =()=>{
     const date = new Date();
     number.textContent = date.toLocaleString('es',{day:'numeric'});
@@ -28,8 +26,9 @@ let task = [];
     formulario.addEventListener('submit', validarFormulario);
     tareas.addEventListener("click", eliminarTarea);
     tareas.addEventListener("click", completarTarea);
+    tareas.addEventListener("click", marcarTareaComoImportante);
     document.addEventListener("DOMContentLoaded", () => {
-        let datosLS = JSON.parse(localStorage.getItem("tareas")) || [];
+        let datosLS = JSON.parse(window.localStorage.getItem("tareas")) || [];
 
         task = datosLS;
         agregarHTML();
@@ -37,29 +36,31 @@ let task = [];
     })
 })()
 
-/* FUNCIONES */
 
 function validarFormulario(e) {
     e.preventDefault();
     //validar los campos
     const tarea = document.querySelector("#tarea").value;
     if (tarea.trim().length === 0) {
-        console.log('vacio');
         return
     }
 
- 
-    //creamos el objeto tarea
     const objTarea = { id: Date.now(), tarea: tarea, estado: false };
-    //agregamos al array sin mutar dicho arreglo
     task = [...task, objTarea];
     formulario.reset();
-    //agregamos al HTML
     agregarHTML();
 }
 
+function agregarEstadoHTML(newItem) {  
+    if(newItem.estado) return `<span class='completa'>${newItem.tarea}</span>`
+    
+    if(newItem.importante) return `<span class='importante importa'>${newItem.tarea}</span>`
+
+    return `<span>${newItem.tarea}</span>`
+
+}
+
 function agregarHTML() {
-    //limpiar el HTML
     while (tareas.firstChild) {
         tareas.removeChild(tareas.firstChild)
     }
@@ -68,11 +69,7 @@ function agregarHTML() {
           const elemento = document.createElement('div');
             elemento.classList.add('item-tarea');
             elemento.innerHTML = `
-                <p>${item.estado ? (
-                `<span class='completa'>${item.tarea}</span>`
-                ) : (
-                    `<span>${item.tarea}</span>`
-                )}</p>
+                <p>${agregarEstadoHTML(item)}</p>
                 <div class="botones">
                     <button class="eliminar" data-id="${item.id}">Eliminar</button>
                     <button class="completada" data-id="${item.id}">Hecha</button>
@@ -91,15 +88,11 @@ function agregarHTML() {
     let totalTareas = task.length;
 
     let tareasCompletas = task.filter(item => item.estado === true).length;
-
-    total.textContent = `Total tareas: ${totalTareas}`;
-
-    completadas.textContent = `Tareas Completadas: ${tareasCompletas}`;
-
-    //persistir los datos con localStorage
-
-    localStorage.setItem("tareas", JSON.stringify(task))
+   
+    window.localStorage.setItem("tareas", JSON.stringify(task) )
 }
+
+
 
 function eliminarTarea(e) {
     if (e.target.classList.contains("eliminar")) {
@@ -123,14 +116,24 @@ function completarTarea(e) {
                 return item
             }
         })
-        //editamos el arreglo
         task = nuevasTareas;
         agregarHTML();
     }
 }
 
-
-function tareaImportante () {
-     document.querySelector('').style.backgroundColor = 'red';
-     //document.getElementById("data-id").style.backgroundColor="Red";
+function marcarTareaComoImportante(e) {
+    if (e.target.classList.contains("importante")) {
+        const tareaID = Number(e.target.getAttribute("data-id"));
+        const nuevasTareas = task.map(item => {
+            if (item.id === tareaID) {
+                item.importante = !item.importante;
+                return item;
+            } else {
+                return item
+            }
+        })
+        task = nuevasTareas;
+        agregarHTML();
     }
+}
+
